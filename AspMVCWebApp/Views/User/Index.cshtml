@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model IEnumerable<AspMVCWebApp.Models.UserModel>
+<head>
+
+
+
+</head>
+@using Kendo.Mvc.UI
+
+@(Html.Kendo().Grid<AspMVCWebApp.Models.UserModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.UserID);
+        columns.Bound(p => p.UserName).Width(200);
+        columns.Bound(p => p.Password).Width(200);
+        columns.Bound(p => p.Email).Width(200);
+        columns.Bound(p => p.Tel).Width(200);
+        columns.Bound(p => p.Disabled).Width(120);
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(200);
+    })
+    .ToolBar(toolbar => toolbar.Create())
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Pageable()
+    .Sortable()
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:550px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.UserID))
+
+        .Create(update => update.Action("EditingPopup_Create", "Home"))
+        .Read(read => read.Action("EditingPopup_Read", "Home"))
+        .Update(update => update.Action("EditingPopup_Update", "Home"))
+        .Destroy(update => update.Action("EditingPopup_Destroy", "Home"))
+    )
+)
