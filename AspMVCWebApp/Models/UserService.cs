@@ -85,10 +85,7 @@ namespace AspMVCWebApp.Models
                     command.Parameters.AddWithValue("@tel", users.Tel);
                     command.Parameters.AddWithValue("@disabled", users.Disabled);
 
-
-
                     command.ExecuteNonQuery();
-
 
                 }
             }

@@ -9,17 +9,15 @@ namespace AspMVCWebApp.Controllers
 {
     public class UserController : Controller
     {
-        // GET: User
+        
         UserContext db = new UserContext();
 
-
-        // GET: User
         public ActionResult Index()
         {
             return View(db.GetUsers());
         }
 
-        // GET: User/Details/5
+      
         public ActionResult Details(string id)
         {
             return View(db.GetUsersByID(id));
@@ -49,14 +47,12 @@ namespace AspMVCWebApp.Controllers
 
         }
 
-        // GET: User/Edit/5
         public ActionResult Edit(string id)
         {
             UserModel user = db.GetUsersByID(id);
             return View(user);
         }
 
-        // POST: User/Edit/5
         [HttpPost]
         public ActionResult Edit(UserModel users)
         {
@@ -72,14 +68,12 @@ namespace AspMVCWebApp.Controllers
 
         }
 
-        // GET: User/Delete/5
         public ActionResult Delete(string id)
         {
             UserModel us = db.GetUsersByID(id);
             return View(us);
         }
 
-        // POST: User/Delete/5
         [HttpPost]
         [ActionName("Delete")]
         public ActionResult DeleteConfirmed(string id)

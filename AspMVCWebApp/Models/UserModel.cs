@@ -12,6 +12,8 @@ namespace AspMVCWebApp.Models
         [Key]
         [MaxLength(50)]
         private string _id;
+        [Required]
+        [Display(Name = "Mã nhân viên")]
         public string UserID
         {
             get { return _id; }
@@ -19,8 +21,11 @@ namespace AspMVCWebApp.Models
         }
         [Required]
         [MaxLength(50)]
+        [Display(Name = "Tên nhân viên")]
         public string UserName { get; set; }
+
         [MaxLength(50)]
+        [Display(Name = "Mật khẩu")]
         public string Password { get; set; }
         [MaxLength(50)]
         public string ConfirmedPassword { get; set; }
@@ -30,7 +35,11 @@ namespace AspMVCWebApp.Models
         public string Email { get; set; }
 
         [RegularExpression(@"^\d{10}$", ErrorMessage = "Invalid Phone Number")]
+        [Display(Name = "Số điện thoại")]
         public string Tel { get; set; }
+
+        [Display(Name = "Thực hiện")]
+        [Required]
         public byte Disabled { get; set; }
     }
 }

@@ -43,7 +43,6 @@ namespace AspMVCWebApp.Controllers
         {
             var users = new UserService().Read();
 
-
             var dataSourceResult = users.ToDataSourceResult(request);
 
             return Json(dataSourceResult, JsonRequestBehavior.AllowGet);
